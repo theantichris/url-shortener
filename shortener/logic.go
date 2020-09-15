@@ -32,7 +32,7 @@ func (r *redirectService) Find(code string) (*Redirect, error) {
 
 func (r *redirectService) Store(redirect *Redirect) error {
 	if err := validate.Validate(redirect); err != nil {
-		return errs.Wrap(ErrRedirectInvalid, "service.Redirect.Store") // TODO: use native wrapper errors
+		return errs.Wrap(ErrRedirectInvalid, "service.Redirect.Store")
 	}
 
 	redirect.Code = shortid.MustGenerate()
