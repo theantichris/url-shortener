@@ -15,3 +15,10 @@ A URL shortener written in Go.
 
 * JSON
 * MessagePack
+
+## TODOs
+
+* add Dotenv
+* write tests
+* write documentation
+* deploy to Heroku
