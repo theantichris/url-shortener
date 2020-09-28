@@ -11,6 +11,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/joho/godotenv"
 	"github.com/theantichris/url-shortener/api"
 	"github.com/theantichris/url-shortener/repository/mongodb"
 	"github.com/theantichris/url-shortener/repository/redis"
@@ -18,6 +19,11 @@ import (
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	repo := chooseRepo()
 	service := shortener.NewRedirectService(repo)
 	handler := api.NewHandler(service)
@@ -48,7 +54,7 @@ func main() {
 }
 
 func httpPort() string {
-	port := "8000" // TODO: set in .env
+	port := os.Getenv("POST")
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")
 	}
