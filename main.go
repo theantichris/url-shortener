@@ -48,7 +48,7 @@ func main() {
 }
 
 func httpPort() string {
-	port := "8000"
+	port := "8000" // TODO: set in .env
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")
 	}
@@ -57,9 +57,9 @@ func httpPort() string {
 }
 
 func chooseRepo() shortener.RedirectRepository {
-	switch os.Getenv("DB_TYPE") {
+	switch os.Getenv("DB_TYPE") { // TODO: set in .env
 	case "redis":
-		redisURL := os.Getenv("REDIS_URL")
+		redisURL := os.Getenv("REDIS_URL") // TODO: set in .env
 		repo, err := redis.NewRedisRepository(redisURL)
 		if err != nil {
 			log.Fatal(err)
@@ -67,9 +67,9 @@ func chooseRepo() shortener.RedirectRepository {
 
 		return repo
 	case "mongo":
-		mongoURL := os.Getenv("MONGO_URL")
-		mongoDB := os.Getenv("MONGO_DB")
-		mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT"))
+		mongoURL := os.Getenv("MONGO_URL")                          // TODO: set in .env
+		mongoDB := os.Getenv("MONGO_DB")                            // TODO: set in .env
+		mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT")) // TODO: set in .env
 
 		repo, err := mongodb.NewMongoRepository(mongoURL, mongoDB, mongoTimeout)
 		if err != nil {
