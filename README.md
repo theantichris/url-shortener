@@ -18,7 +18,6 @@ A URL shortener written in Go.
 
 ## TODOs
 
-* add Dotenv
 * write tests
 * write documentation
 * deploy to Heroku
