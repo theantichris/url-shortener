@@ -71,6 +71,8 @@ func chooseRepo() shortener.RedirectRepository {
 			log.Fatal(err)
 		}
 
+		fmt.Println("Connected to Redis")
+
 		return repo
 	case "mongo":
 		mongoURL := os.Getenv("MONGO_URL")
@@ -81,6 +83,8 @@ func chooseRepo() shortener.RedirectRepository {
 		if err != nil {
 			log.Fatal(err)
 		}
+
+		fmt.Println("Connected to Mongo")
 
 		return repo
 	}

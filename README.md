@@ -16,8 +16,20 @@ A URL shortener written in Go.
 * JSON
 * MessagePack
 
+### Dev
+
+#### With MongoDB
+
+1. Start database
+    * `docker-compose -f stack.yml up`
+    * Go to `http://localhost:8081` for Mongo Express
+    * Create a `redirects` collection
+1. Copy `sample.env` to `.env` and update values
+
 ## TODOs
 
+* Get working on MongoDB
+* Get working on Redis
 * write tests
 * write documentation
 * deploy to Heroku
