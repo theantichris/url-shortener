@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -96,6 +97,7 @@ func (h *handler) Post(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		fmt.Println("failed to store redirect", err) // TODO
 		writeError(w, http.StatusInternalServerError)
 		return
 	}
