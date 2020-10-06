@@ -35,6 +35,7 @@ func main() {
 	r.Use(middleware.Recoverer)
 
 	r.Get("/{code}", handler.Get)
+	r.Get("/", handler.Index)
 	r.Post("/", handler.Post)
 
 	errs := make(chan error, 2)

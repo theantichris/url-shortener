@@ -14,6 +14,7 @@ import (
 
 // RedirectHandler defines the contract for a handler on the HTTP layer.
 type RedirectHandler interface {
+	Index(http.ResponseWriter, *http.Request)
 	Get(http.ResponseWriter, *http.Request)
 	Post(http.ResponseWriter, *http.Request)
 }
@@ -49,6 +50,12 @@ func (h *handler) serializer(contentType string) shortener.RedirectSerializer {
 	}
 
 	return &js.Redirect{}
+}
+
+func (h *handler) Index(w http.ResponseWriter, r *http.Request) {
+	contentType := r.Header.Get("Content-Type")
+
+	writeResponse(w, contentType, http.StatusOK, []byte("It works!"))
 }
 
 func (h *handler) Get(w http.ResponseWriter, r *http.Request) {
