@@ -28,7 +28,6 @@ A URL shortener written in Go.
 
 ## TODOs
 
-* Get working on MongoDB
 * Get working on Redis
 * write tests
 * write documentation
