@@ -26,9 +26,14 @@ A URL shortener written in Go.
     * Create a `redirects` collection
 1. Copy `sample.env` to `.env` and update values
 
+#### With Redis
+
+1. Start database
+    * `docker-compose -f stack.yml up`
+1. Copy `sample.env` to `.env` and update values
+
 ## TODOs
 
-* Get working on Redis
 * write tests
 * write documentation
 * deploy to Heroku
