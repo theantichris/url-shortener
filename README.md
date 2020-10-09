@@ -1,10 +1,10 @@
 # url-shortener
 
-![Go](https://github.com/theantichris/url-shortener/workflows/Go/badge.svg)
+![Go](https://github.com/theantichris/url-shortener/workflows/Go/badge.svg) [![PkgGoDev](https://pkg.go.dev/badge/github.com/theantichris/url-shortener)](https://pkg.go.dev/github.com/theantichris/url-shortener)
 
 A URL shortener written in Go.
 
-## Ports
+## Available Ports & Adaptors
 
 ### Repositories
 
@@ -16,25 +16,46 @@ A URL shortener written in Go.
 * JSON
 * MessagePack
 
-### Dev
+## Development
 
-#### With MongoDB
-
-1. Start database
-    * `docker-compose -f stack.yml up`
-    * Go to `http://localhost:8081` for Mongo Express
-    * Create a `redirects` collection
+1. Start Mongo and Redis servers
+    * `docker-compose up`
+    * For Mongo add the `redirects` collection
+    * Mongo Express is accessible at `http://localhost:8081`
 1. Copy `sample.env` to `.env` and update values
-1. `go run main.go`
+    * Set `DB_TYPE` to `mongo` or `redis`
+1. Start the application
+    * `go run main.go`
+    * The application is accessible at `http://localhost:8080`
 
-#### With Redis
+## Endpoints
 
-1. Start database
-    * `docker-compose -f stack.yml up`
-1. Copy `sample.env` to `.env` and update values
-1. `go run main.go`
+### GET /
 
-## TODOs
+A health check endpoint that displays a message if the server is running.
 
-* write tests
-* deploy to Heroku
+### POST /
+
+Creates a new redirect and returns the code.
+
+#### Body
+
+```json
+{
+    "url": "http:/example.com"
+}
+```
+
+#### Response
+
+```json
+{
+  "code": "Rz5x645Mg",
+  "url": "https://example.com",
+  "created_at": 1602164689
+}
+```
+
+### GET /{code}
+
+Redirects you to the URL for the specified code.
