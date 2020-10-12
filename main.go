@@ -76,7 +76,7 @@ func chooseRepo() shortener.RedirectRepository {
 
 		return repo
 	case "mongo":
-		mongoURL := os.Getenv("MONGO_URL")
+		mongoURL := os.Getenv("DATABASE_URL")
 		mongoDB := os.Getenv("MONGO_DB")
 		mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT"))
 
