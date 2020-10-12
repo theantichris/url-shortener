@@ -1,6 +1,7 @@
 module github.com/theantichris/url-shortener
 
 go 1.15
+// +heroku goVersion go1.15
 
 require (
 	github.com/go-chi/chi v4.1.2+incompatible
