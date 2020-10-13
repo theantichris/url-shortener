@@ -19,9 +19,8 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal(err)
+	if err := godotenv.Load(); err != nil {
+		log.Println(err.Error())
 	}
 
 	repo := chooseRepo()
