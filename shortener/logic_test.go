@@ -68,4 +68,30 @@ func TestStore(t *testing.T) {
 			t.Errorf("Store() was called %d, expected %d calls", repo.storeCount, 1)
 		}
 	})
+
+	t.Run("it returns a validation error for missing URL", func(t *testing.T) {
+		repo := mockRepo{}
+		service := NewRedirectService(&repo)
+
+		redirect := &Redirect{}
+
+		err := service.Store(redirect)
+
+		if err == nil {
+			t.Error("Expected a validation error but received none")
+		}
+	})
+
+	t.Run("it returns a validation error for invalid URL", func(t *testing.T) {
+		repo := mockRepo{}
+		service := NewRedirectService(&repo)
+
+		redirect := &Redirect{URL: "example"}
+
+		err := service.Store(redirect)
+
+		if err == nil {
+			t.Error("Expected a validation error but received none")
+		}
+	})
 }
