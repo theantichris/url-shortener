@@ -37,7 +37,7 @@ func writeResponse(w http.ResponseWriter, contentType string, statusCode int, bo
 
 	_, err := w.Write(body)
 	if err != nil {
-		log.Println(err) // TODO: add proper logging
+		log.Println(err)
 	}
 }
 
@@ -97,7 +97,7 @@ func (h *handler) Post(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		fmt.Println("failed to store redirect", err) // TODO
+		fmt.Println("failed to store redirect", err)
 		writeError(w, http.StatusInternalServerError)
 		return
 	}
